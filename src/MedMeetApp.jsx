@@ -6,11 +6,14 @@ export const MedMeetApp = () => {
 
     return (
         <>
-            <div className="container">
+            <header>
                 <MainNavBar />
+            </header>
+
+            <div className="container">
 
                 <div className="card shadow-sm mb-5 rounded my-3">
-                    
+
                     <div className="card-header bg-primary text-white">
                         <h1 className="fs-4 text-center">Lista de Doctores</h1>
                     </div>

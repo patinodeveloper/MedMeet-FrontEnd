@@ -3,8 +3,8 @@ export const MainNavBar = () => {
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-primary-subtle">
-                <div className="container-fluid">
-                    <a className="navbar-brand fs-3 fw-medium text-info-emphasis" href="#">MedMeet</a>
+                <div className="mx-5 container-fluid">
+                    <a className="navbar-brand fs-3 fw-medium text-info-emphasis me-5" href="#">MedMeet</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>

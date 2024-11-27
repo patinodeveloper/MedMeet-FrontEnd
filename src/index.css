@@ -8,7 +8,11 @@
     --other: #C1E8FF;
 
     --primaryFont: "Poppins", sans-serif;
+    --secondaryFont: "Roboto", sans-serif;
+
+    --table-bg-head: #B3C8CF;
 }
+
 /* 
 .nav-item:hover {
     background-color: var(--bg-primary);
@@ -16,11 +20,13 @@
     margin: 0;
 } */
 
+body {
+    font-family: var(--secondaryFont);
+}
+
 h1,
 h2,
 h3,
 a {
     font-family: var(--primaryFont);
 }
-
-/* .nav- */

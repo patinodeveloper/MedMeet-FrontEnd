@@ -9,4 +9,9 @@ export const getDoctors = async () => {
     return doctors;
 };
 
-
+// export const getDoctorsPages = async (page = 0) => {
+//     const response = await fetch(`${URL}/page/${page}`);
+//     const doctors = await response.json();
+    
+//     return doctors;
+// };
