@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { DoctorModal } from "./DoctorModal";
-import { DoctorsList } from "./DoctorsList";
+import { DoctorModal } from "../components/DoctorModal";
+import { DoctorsList } from "../components/DoctorsList";
 import { DoctorContext } from "../context/DoctorContext";
 
-export const DoctorsView = ({ title }) => {
+export const DoctorsView = () => {
     const {
         doctors,
         visibleForm,
@@ -26,7 +26,7 @@ export const DoctorsView = ({ title }) => {
                 <>
                     {!visibleForm ||
                         <DoctorModal />}
-                    <h3 className="fs-5">{title}</h3>
+                    <h3 className="fs-5">Datos de los doctores</h3>
                     <div className="mb-3 d-flex justify-content-end">
                         {visibleForm || <button
                             className="btn btn-primary"

@@ -30,3 +30,8 @@ h3,
 a {
     font-family: var(--primaryFont);
 }
+
+/* .btn-info:hover {
+    background-color: var(--primary);
+    color: white;
+} */
