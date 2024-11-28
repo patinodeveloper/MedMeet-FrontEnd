@@ -1,17 +1,39 @@
-import { API_BASE_URL } from "../config.js";
+import axios from "axios";
+import { API_BASE_URL } from "../config";
 
-    const URL = `${API_BASE_URL}/doctors`;
+const URL = `${API_BASE_URL}/doctors`;
 
-export const getDoctors = async () => {
-    const response = await fetch(URL);
-    const doctors = await response.json();
-    
-    return doctors;
+export const findAllDoctors = async () => {
+    try {
+        const response = await axios.get(URL);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 };
 
-// export const getDoctorsPages = async (page = 0) => {
-//     const response = await fetch(`${URL}/page/${page}`);
-//     const doctors = await response.json();
-    
-//     return doctors;
-// };
+export const saveDoctor = async (doctor) => {
+    try {
+        return await axios.post(URL, doctor);
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const updateDoctor = async (doctor) => {
+    try {
+        return await axios.put(`${URL}/${doctor.id}`, doctor);
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const removeDoctor = async (id) => {
+    try {
+        await axios.delete(`${URL}/${id}`);
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};

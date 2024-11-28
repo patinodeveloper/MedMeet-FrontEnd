@@ -1,6 +1,8 @@
 import { DoctorsView } from "./components/DoctorsView";
 import { FooterView } from "./components/FooterView";
 import { MainNavBar } from "./components/MainNavBar";
+import { DoctorProvider } from "./context/DoctorProvider";
+import { SpecialtyProvider } from "./context/SpecialtyProvider";
 
 export const MedMeetApp = () => {
 
@@ -19,7 +21,11 @@ export const MedMeetApp = () => {
                     </div>
 
                     <div className="card-body">
-                        <DoctorsView title={"Datos de los doctores"} />
+                        <SpecialtyProvider>
+                            <DoctorProvider>
+                                <DoctorsView title={"Datos de los doctores"} />
+                            </DoctorProvider>
+                        </SpecialtyProvider>
                     </div>
 
                 </div>
