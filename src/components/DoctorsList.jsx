@@ -1,10 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import DataTable from "react-data-table-component"
 import { DoctorContext } from "../context/DoctorContext";
 import { ActionButtons } from "./ActionButtons";
 
 export const DoctorsList = () => {
-
     const { doctors = [] } = useContext(DoctorContext);
 
     const columns = [
@@ -15,10 +14,9 @@ export const DoctorsList = () => {
         { name: "Especialidad", selector: row => row.specialty.name, sortable: true, width: "160px" },
         {
             name: "Acciones",
-            // pasar doctor
-            cell: row => <ActionButtons row={row} />,
+            cell: doctor => <ActionButtons doctor={doctor} />, // pasar doctor
             width: "130px"
-        },
+        }
     ];
 
     const customStyles = {

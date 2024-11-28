@@ -5,11 +5,15 @@ import { findAllDoctors, saveDoctor, updateDoctor, removeDoctor } from "../api/s
 import { useSpecialties } from "./useSpecialties";
 
 const initialDoctors = [];
-const initialDoctorForm = { id: 0, firstName: "", lastName: "", email: "", specialty: "" };
+const initialDoctorForm = { id: 0, firstName: "", lastName: "", email: "", specialty: {id: 0, name: ''} };
 const initialErrors = {
-    username: '',
-    password: '',
-    email: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    specialty: {
+        id: 0,
+        name: ''
+    }
 }
 
 export const useDoctors = () => {
@@ -45,7 +49,7 @@ export const useDoctors = () => {
             if (doctor.id === 0) {
                 response = await saveDoctor({
                     ...doctor,
-                    specialtyId: doctor.specialty.id // solo el ID
+                    specialtyId: doctor.specialty.id
                 });
             } else {
                 response = await updateDoctor({
@@ -106,8 +110,15 @@ export const useDoctors = () => {
     };
 
     const handlerDoctorSelectedForm = (doctor) => {
+        if (!doctor) {
+            console.error("Error: El doctor seleccionado no está definido.");
+            return;
+        }
         setVisibleForm(true);
-        setDoctorSelected({ ...doctor });
+        setDoctorSelected({
+            ...doctor,
+            specialty: doctor.specialty || { id: 0, name: "" }
+        });
     };
 
     const handlerOpenForm = () => {
@@ -119,7 +130,6 @@ export const useDoctors = () => {
         setDoctorSelected(initialDoctorForm);
         setErrors({});
     };
-
 
     return {
         doctors,

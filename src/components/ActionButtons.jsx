@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { DoctorContext } from "../context/DoctorContext";
 
 export const ActionButtons = ({ doctor }) => {
-    // pasar doctor
+    
     const { handlerRemoveDoctor, handlerDoctorSelectedForm } = useContext(DoctorContext);
 
     return (
@@ -15,7 +15,7 @@ export const ActionButtons = ({ doctor }) => {
             </button>
             <button
                 className="btn btn-danger"
-                onClick={() => handlerRemoveDoctor(id)}
+                onClick={() => handlerRemoveDoctor(doctor.id)}
             >
                 <i className="fas fa-trash"></i>
             </button>
