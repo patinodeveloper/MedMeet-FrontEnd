@@ -35,7 +35,7 @@ export const useDoctors = () => {
                 payload: result});
             setErrors({});
         } catch (error) {
-            console.error("Error fetching doctors", error);
+            console.error("Error al cargar los doctores", error);
         } finally {
             setIsLoading(false);
         }
@@ -75,7 +75,7 @@ export const useDoctors = () => {
             if (error.response?.status === 400) {
                 setErrors(error.response.data);
             } else {
-                console.error("Error saving doctor", error);
+                console.error("Error al guardar el doctor", error);
                 throw error;
             }
         }
