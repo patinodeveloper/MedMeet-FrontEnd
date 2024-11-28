@@ -19,10 +19,13 @@ export const MainNavBar = () => {
                                 <Link className="nav-link text-black" to="/doctors">Doctores</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-black" href="#">Pacientes</a>
+                                <Link className="nav-link text-black" to="/patients">Pacientes</Link>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link text-black" href="#">Citas</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link text-black" href="#">Especialidades</a>
                             </li>
                         </ul>
                     </div>

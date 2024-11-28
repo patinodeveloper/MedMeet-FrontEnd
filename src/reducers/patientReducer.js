@@ -1,6 +1,6 @@
 export const patientReducer = (state = [], action) => {
 
-    switch (action) {
+    switch (action.type) {
         case "loadPatients":
             return action.payload;
         case "addPatient":

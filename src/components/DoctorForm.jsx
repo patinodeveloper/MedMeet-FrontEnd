@@ -65,73 +65,88 @@ export const DoctorForm = ({ doctorSelected, handlerCloseForm }) => {
 
     return (
         <form onSubmit={onSubmit}>
-            <input
-                type="text"
-                className="form-control my-3 w-75"
-                placeholder="First Name"
-                name="firstName"
-                value={firstName}
-                onChange={onInputChange}
-            />
-            <p className="text-danger">{errors?.firstName}</p>
+            <div className="mb-3">
+                <label className="form-label">Nombre</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="First Name"
+                    name="firstName"
+                    value={firstName}
+                    onChange={onInputChange}
+                />
+                <p className="text-danger">{errors?.firstName}</p>
+            </div>
+            <div className="mb-3">
+                <label className="form-label">Apellidos</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Last Name"
+                    name="lastName"
+                    value={lastName}
+                    onChange={onInputChange}
+                />
+                <p className="text-danger">{errors?.lastName}</p>
+            </div>
 
-            <input
-                type="text"
-                className="form-control my-3 w-75"
-                placeholder="Last Name"
-                name="lastName"
-                value={lastName}
-                onChange={onInputChange}
-            />
-            <p className="text-danger">{errors?.lastName}</p>
+            <div className="mb-3">
+                <label className="form-label">Correo</label>
+                <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Email"
+                    name="email"
+                    value={email}
+                    onChange={onInputChange}
+                />
+                <p className="text-danger">{errors?.email}</p>
+            </div>
 
-            <input
-                type="email"
-                className="form-control my-3 w-75"
-                placeholder="Email"
-                name="email"
-                value={email}
-                onChange={onInputChange}
-            />
-            <p className="text-danger">{errors?.email}</p>
+            <div className="mb-3">
+                <label className="form-label">Especialidad</label>
+                <select
+                    className="form-select"
+                    name="specialty"
+                    value={specialty?.id || ''}
+                    onChange={onSpecialtyChange}
+                >
+                    <option value="">Seleccionar especialidad</option>
+                    {specialties.length > 0 ? (
+                        specialties.map(specialty => (
+                            <option key={specialty.id} value={specialty.id}>
+                                {specialty.name}
+                            </option>
+                        ))
+                    ) : (
+                        <option disabled>No hay especialidades disponibles</option>
+                    )}
+                </select>
+                <p className="text-danger">{errors?.specialty}</p>
+            </div>
 
-            <select
-                className="form-control my-3 w-75"
-                name="specialty"
-                value={specialty?.id || ''}
-                onChange={onSpecialtyChange}
-            >
-                <option value="">Seleccionar especialidad</option>
-                {specialties.length > 0 ? (
-                    specialties.map(specialty => (
-                        <option key={specialty.id} value={specialty.id}>
-                            {specialty.name}
-                        </option>
-                    ))
-                ) : (
-                    <option disabled>No hay especialidades disponibles</option>
-                )}
-            </select>
-            <p className="text-danger">{errors?.specialty}</p>
+            <div className="mb-3">
+                <input
+                    type="hidden"
+                    name="id"
+                    value={id} />
 
-            <input
-                type="hidden"
-                name="id"
-                value={id} />
+            </div>
+            <div className="modal-footer">
+                <button
+                    type="submit"
+                    className={id > 0 ? "btn btn-warning" : "btn btn-primary"}
+                >
+                    {id > 0 ? "Editar" : "Crear"}
+                </button>
 
-            <button
-                type="submit"
-                className={id > 0 ? "btn btn-warning" : "btn btn-primary"}
-            >
-                {id > 0 ? "Editar" : "Crear"}
-            </button>
-
-            {!handlerCloseForm || <button
-                type="button"
-                className="btn btn-secondary mx-2"
-                onClick={() => onCloseForm()}>
-                Cerrar Formulario
-            </button>}
+                {!handlerCloseForm || <button
+                    type="button"
+                    className="btn btn-secondary mx-2"
+                    onClick={() => onCloseForm()}>
+                    Cancelar
+                </button>}
+            </div>
         </form>
     )
 }

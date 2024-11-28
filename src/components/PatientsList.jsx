@@ -1,20 +1,22 @@
 import { useContext } from "react";
-import DataTable from "react-data-table-component"
-import { DoctorContext } from "../context/DoctorContext";
-import { ActionButtons } from "./ActionButtons";
+import DataTable from "react-data-table-component";
+import { PatientContext } from "../context/PatientContext";
+import { ActionButtonsPatient } from "./ActionButtonsPatient";
 
-export const DoctorsList = () => {
-    const { doctors = [] } = useContext(DoctorContext);
+export const PatientsList = () => {
+    const { patients = [] } = useContext(PatientContext);
 
     const columns = [
         { name: "ID", selector: row => row.id, sortable: true, width: "80px" },
         { name: "Nombre", selector: row => row.firstName, sortable: true },
         { name: "Apellidos", selector: row => row.lastName, sortable: true },
-        { name: "Correo", selector: row => row.email, sortable: true, width: "280px" },
-        { name: "Especialidad", selector: row => row.specialty ? row.specialty.name : 'Sin Especialidad', sortable: true, width: "160px" },
+        { name: "Edad", selector: row => row.age, sortable: true, width: "100px" },
+        { name: "Sexo", selector: row => row.sex, sortable: true, width: "140px" },
+        { name: "Teléfono", selector: row => row.phoneNumber, sortable: true, width: "160px" },
+        { name: "Dirección", selector: row => row.address, sortable: true, width: "160px" },
         {
             name: "Acciones",
-            cell: doctor => <ActionButtons doctor={doctor} />,
+            cell: patient => <ActionButtonsPatient patient={patient} />,
             width: "130px"
         }
     ];
@@ -42,12 +44,12 @@ export const DoctorsList = () => {
 
             customStyles={customStyles}
             columns={columns}
-            data={doctors}
+            data={patients}
             pagination
             paginationPerPage={5}
             paginationRowsPerPageOptions={[5, 10, 15, 20]}
             highlightOnHover
             striped
         />
-    )
-}
+    );
+};

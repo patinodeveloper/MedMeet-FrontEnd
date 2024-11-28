@@ -23,6 +23,7 @@ export const usePatients = () => {
                 type: "loadPatients",
                 payload: result
             });
+            setErrors({});
         } catch (error) {
             console.error("Error", error);
         } finally {
@@ -32,7 +33,7 @@ export const usePatients = () => {
 
     const handlerAddPatient = async (patient) => {
         console.log(patient);
-        const type = (patient.id === 0) ? "addPatient" : "updateUpdate";
+        const type = (patient.id === 0) ? "addPatient" : "updatePatient";
         let response;
         try {
             if (patient.id === 0) {
