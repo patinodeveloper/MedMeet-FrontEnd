@@ -25,7 +25,7 @@ export const MainNavBar = () => {
                                 <a className="nav-link text-black" href="#">Citas</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-black" href="#">Especialidades</a>
+                                <Link className="nav-link text-black" to="/specialties">Especialidades</Link>
                             </li>
                         </ul>
                     </div>

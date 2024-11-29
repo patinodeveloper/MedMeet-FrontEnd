@@ -63,7 +63,7 @@ export const usePatients = () => {
             if (error.response?.status === 400) {
                 setErrors(error.response.data);
             } else {
-                console.error("Error saving doctor", error);
+                console.error("Error al guardar el paciente", error);
                 throw error;
             }
         }
@@ -71,7 +71,7 @@ export const usePatients = () => {
 
     const handlerRemovePatient = async (id) => {
         Swal.fire({
-            le: "¿Está seguro que desea eliminar?",
+            title: "¿Está seguro que desea eliminar?",
             text: "Esta acción es irreversible",
             icon: "warning",
             showCancelButton: true,

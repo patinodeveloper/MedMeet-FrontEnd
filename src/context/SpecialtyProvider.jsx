@@ -5,8 +5,17 @@ export const SpecialtyProvider = ({ children }) => {
 
     const {
         specialties,
+        specialtySelected,
+        initialSpecialtyForm,
+        visibleForm,
         errors,
+        isLoading,
 
+        handlerAddSpecialty,
+        handlerRemoveSpecialty,
+        handlerSpecialtySelectedForm,
+        handlerOpenForm,
+        handlerCloseForm,
         getSpecialties
     } = useSpecialties();
 
@@ -14,8 +23,17 @@ export const SpecialtyProvider = ({ children }) => {
         <SpecialtyContext.Provider value={
             {
                 specialties,
+                specialtySelected,
+                initialSpecialtyForm,
+                visibleForm,
                 errors,
+                isLoading,
 
+                handlerAddSpecialty,
+                handlerRemoveSpecialty,
+                handlerSpecialtySelectedForm,
+                handlerOpenForm,
+                handlerCloseForm,
                 getSpecialties
             }
         }>

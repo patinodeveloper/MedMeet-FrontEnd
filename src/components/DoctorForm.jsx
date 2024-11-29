@@ -43,7 +43,7 @@ export const DoctorForm = ({ doctorSelected, handlerCloseForm }) => {
     const onSubmit = (evt) => {
         evt.preventDefault();
 
-        if (!firstName || !lastName || !email || !specialty) {
+        if (!firstName || !lastName || !email || !specialty || specialty === "") {
             Swal.fire({
                 title: 'Error de Validacion',
                 text: 'Por favor, completa todos los campos del formulario!',
@@ -70,7 +70,7 @@ export const DoctorForm = ({ doctorSelected, handlerCloseForm }) => {
                 <input
                     type="text"
                     className="form-control"
-                    placeholder="First Name"
+                    placeholder="Nombre"
                     name="firstName"
                     value={firstName}
                     onChange={onInputChange}
@@ -82,7 +82,7 @@ export const DoctorForm = ({ doctorSelected, handlerCloseForm }) => {
                 <input
                     type="text"
                     className="form-control"
-                    placeholder="Last Name"
+                    placeholder="Apellidos"
                     name="lastName"
                     value={lastName}
                     onChange={onInputChange}
@@ -95,7 +95,7 @@ export const DoctorForm = ({ doctorSelected, handlerCloseForm }) => {
                 <input
                     type="email"
                     className="form-control"
-                    placeholder="Email"
+                    placeholder="Correo"
                     name="email"
                     value={email}
                     onChange={onInputChange}

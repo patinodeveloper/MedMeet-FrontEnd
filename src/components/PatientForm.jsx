@@ -52,6 +52,7 @@ export const PatientForm = ({ patientSelected, handlerCloseForm }) => {
                         <input
                             type="text"
                             className="form-control"
+                            placeholder="Nombre"
                             name="firstName"
                             value={firstName}
                             onChange={onInputChange}
@@ -62,6 +63,7 @@ export const PatientForm = ({ patientSelected, handlerCloseForm }) => {
                         <input
                             type="text"
                             className="form-control"
+                            placeholder="Apellidos"
                             name="lastName"
                             value={lastName}
                             onChange={onInputChange}
@@ -96,6 +98,7 @@ export const PatientForm = ({ patientSelected, handlerCloseForm }) => {
                         <input
                             type="text"
                             className="form-control"
+                            placeholder="Telefono"
                             name="phoneNumber"
                             value={phoneNumber}
                             onChange={onInputChange}
@@ -108,6 +111,7 @@ export const PatientForm = ({ patientSelected, handlerCloseForm }) => {
                         <input
                             type="text"
                             className="form-control"
+                            placeholder="Dirección"
                             name="address"
                             value={address}
                             onChange={onInputChange}

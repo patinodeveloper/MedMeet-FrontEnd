@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import { FooterView } from "./components/layout/FooterView";
 import { MainNavBar } from "./components/layout/MainNavBar";
-import { DoctorRoutes } from "./routes/DoctorRoutes";
+import { AppRoutes } from "./routes/AppRoutes";
 
 export const MedMeetApp = () => {
 
@@ -13,7 +13,7 @@ export const MedMeetApp = () => {
                 </header>
 
                 <div className="container">
-                    <DoctorRoutes />
+                    <AppRoutes />
                 </div>
 
                 <FooterView />

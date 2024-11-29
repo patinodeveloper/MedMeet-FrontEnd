@@ -7,7 +7,7 @@ export const specialtiesReducer = (state = [], action) => {
         case "addSpecialty":
             return [...state, action.payload];
 
-        case "updateSpecialties":
+        case "updateSpecialty":
             return state.map((specialty) =>
                 specialty.id === action.payload.id ? action.payload : specialty
             );

@@ -37,3 +37,13 @@ export const removeDoctor = async (id) => {
         throw error;
     }
 };
+
+export const getDoctorsBySpecialty = async (specialtyId) => {
+    try {
+        const response = await axios.get(`${URL}/specialty/${specialtyId}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error al cargar los doctores", error);
+        throw error;
+    }
+};
