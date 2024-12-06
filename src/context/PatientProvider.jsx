@@ -10,6 +10,9 @@ export const PatientProvider = ({ children }) => {
         visibleForm,
         errors,
         isLoading,
+        searchText,
+        setSearchText,
+        filteredPatients,
 
         handlerAddPatient,
         handlerRemovePatient,
@@ -28,7 +31,10 @@ export const PatientProvider = ({ children }) => {
                 visibleForm,
                 errors,
                 isLoading,
-        
+                searchText,
+                setSearchText,
+                filteredPatients,
+
                 handlerAddPatient,
                 handlerRemovePatient,
                 handlerPatientSelectedForm,

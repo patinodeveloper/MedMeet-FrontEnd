@@ -1,10 +1,21 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { PatientContext } from "../context/PatientContext";
-import { ActionButtonsPatient } from "./ActionButtonsPatient";
+import { SearchBar } from "./SearchBar";
+import { ActionButtons } from "./ActionButtons";
 
 export const PatientsList = () => {
-    const { patients = [] } = useContext(PatientContext);
+    const {
+        filteredPatients,
+        searchText,
+        setSearchText,
+        handlerPatientSelectedForm,
+        handlerRemovePatient
+    } = useContext(PatientContext);
+
+    useEffect(() => {
+        setSearchText("");
+    }, [setSearchText]);
 
     const columns = [
         { name: "ID", selector: row => row.id, sortable: true, width: "80px" },
@@ -16,7 +27,12 @@ export const PatientsList = () => {
         { name: "Dirección", selector: row => row.address, sortable: true, width: "160px" },
         {
             name: "Acciones",
-            cell: patient => <ActionButtonsPatient patient={patient} />,
+            cell: patient =>
+                <ActionButtons
+                    item={patient}
+                    handlerEdit={handlerPatientSelectedForm}
+                    handlerRemove={handlerRemovePatient}
+                />,
             width: "130px"
         }
     ];
@@ -39,17 +55,25 @@ export const PatientsList = () => {
     };
 
     return (
-        <DataTable
-            className="table table-bordered table-hover"
-
-            customStyles={customStyles}
-            columns={columns}
-            data={patients}
-            pagination
-            paginationPerPage={5}
-            paginationRowsPerPageOptions={[5, 10, 15, 20]}
-            highlightOnHover
-            striped
-        />
+        <>
+            <div className="mb-3 d-flex justify-content-between align-items-center">
+                <SearchBar
+                    value={searchText}
+                    onChange={setSearchText}
+                    placeholder="Buscar paciente..."
+                />
+            </div>
+            <DataTable
+                className="table table-bordered table-hover"
+                customStyles={customStyles}
+                columns={columns}
+                data={filteredPatients}
+                pagination
+                paginationPerPage={5}
+                paginationRowsPerPageOptions={[5, 10, 15, 20]}
+                highlightOnHover
+                striped
+            />
+        </>
     );
 };

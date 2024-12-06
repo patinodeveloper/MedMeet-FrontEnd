@@ -14,7 +14,8 @@ export const usePatients = () => {
     const [errors, setErrors] = useState(initialErrors);
 
     const [isLoading, setIsLoading] = useState(false);
-
+    const [searchText, setSearchText] = useState("");
+    
     const getPatients = async () => {
         setIsLoading(true);
         try {
@@ -59,6 +60,7 @@ export const usePatients = () => {
                 "success"
             );
             handlerCloseForm();
+            setSearchText("");
         } catch (error) {
             if (error.response?.status === 400) {
                 setErrors(error.response.data);
@@ -92,6 +94,7 @@ export const usePatients = () => {
                     text: "El Paciente se ha eliminado exitosamente",
                     icon: "success"
                 });
+                setSearchText("");
             }
         });
     };
@@ -117,6 +120,12 @@ export const usePatients = () => {
         setErrors({});
     };
 
+    const filteredPatients = patients.filter(patient =>
+        `${patient.firstName} ${patient.lastName}`.toLowerCase().includes(searchText.toLowerCase()) ||
+        patient.phoneNumber.toLowerCase().includes(searchText.toLowerCase()) ||
+        patient.address.toLowerCase().includes(searchText.toLowerCase())
+    );
+
     return {
         patients,
         patientSelected,
@@ -124,6 +133,9 @@ export const usePatients = () => {
         visibleForm,
         errors,
         isLoading,
+        searchText,
+        setSearchText,
+        filteredPatients,
 
         handlerAddPatient,
         handlerRemovePatient,

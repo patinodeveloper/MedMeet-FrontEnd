@@ -1,17 +1,32 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { SpecialtyContext } from "../context/SpecialtyContext";
-import { ActionButtonsSpecialty } from "./ActionButtonsSpecialty";
+import { ActionButtons } from "./ActionButtons";
+import { SearchBar } from "./SearchBar";
 
 export const SpecialtiesList = () => {
-    const { specialties = [] } = useContext(SpecialtyContext);
+    const {
+        filteredSpecialties,
+        searchText,
+        setSearchText,
+        handlerSpecialtySelectedForm,
+        handlerRemoveSpecialty
+    } = useContext(SpecialtyContext);
+
+    useEffect(() => {
+        setSearchText("");
+    }, [setSearchText]);
 
     const columns = [
         { name: "ID", selector: row => row.id, sortable: true, width: "100px" },
         { name: "Especialidad", selector: row => row.name, sortable: true },
         {
             name: "Acciones",
-            cell: specialty => <ActionButtonsSpecialty specialty={specialty} />,
+            cell: specialty => <ActionButtons
+                item={specialty}
+                handlerEdit={handlerSpecialtySelectedForm}
+                handlerRemove={handlerRemoveSpecialty}
+            />,
             width: "150px",
         }
     ];
@@ -34,17 +49,26 @@ export const SpecialtiesList = () => {
     };
 
     return (
-        <DataTable
-            className="table table-bordered table-hover"
-            customStyles={customStyles}
-            columns={columns}
-            data={specialties}
-            pagination
-            paginationPerPage={5}
-            paginationRowsPerPageOptions={[5, 10, 15, 20]}
-            highlightOnHover
-            striped
-        />
+        <>
+            <div className="mb-3 d-flex justify-content-between align-items-center">
+                <SearchBar
+                    value={searchText}
+                    onChange={setSearchText}
+                    placeholder="Buscar especialidad..."
+                />
+            </div>
+            <DataTable
+                className="table table-bordered table-hover"
+                customStyles={customStyles}
+                columns={columns}
+                data={filteredSpecialties}
+                pagination
+                paginationPerPage={5}
+                paginationRowsPerPageOptions={[5, 10, 15, 20]}
+                highlightOnHover
+                striped
+            />
+        </>
     );
 };
 

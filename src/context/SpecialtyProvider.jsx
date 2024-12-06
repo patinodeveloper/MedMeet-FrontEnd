@@ -10,6 +10,9 @@ export const SpecialtyProvider = ({ children }) => {
         visibleForm,
         errors,
         isLoading,
+        searchText,
+        setSearchText,
+        filteredSpecialties,
 
         handlerAddSpecialty,
         handlerRemoveSpecialty,
@@ -28,6 +31,9 @@ export const SpecialtyProvider = ({ children }) => {
                 visibleForm,
                 errors,
                 isLoading,
+                searchText,
+                setSearchText,
+                filteredSpecialties,
 
                 handlerAddSpecialty,
                 handlerRemoveSpecialty,

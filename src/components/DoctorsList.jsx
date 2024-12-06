@@ -1,10 +1,21 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import DataTable from "react-data-table-component"
 import { DoctorContext } from "../context/DoctorContext";
 import { ActionButtons } from "./ActionButtons";
+import { SearchBar } from "./SearchBar";
 
 export const DoctorsList = () => {
-    const { doctors = [] } = useContext(DoctorContext);
+    const {
+        filteredDoctors,
+        searchText,
+        setSearchText,
+        handlerDoctorSelectedForm,
+        handlerRemoveDoctor
+    } = useContext(DoctorContext);
+
+    useEffect(() => {
+        setSearchText("");
+    }, [setSearchText]);
 
     const columns = [
         { name: "ID", selector: row => row.id, sortable: true, width: "80px" },
@@ -14,7 +25,13 @@ export const DoctorsList = () => {
         { name: "Especialidad", selector: row => row.specialty ? row.specialty.name : 'Sin Especialidad', sortable: true, width: "160px" },
         {
             name: "Acciones",
-            cell: doctor => <ActionButtons doctor={doctor} />,
+            cell: doctor => (
+                <ActionButtons
+                    item={doctor}
+                    handlerEdit={handlerDoctorSelectedForm}
+                    handlerRemove={handlerRemoveDoctor}
+                />
+            ),
             width: "130px"
         }
     ];
@@ -37,17 +54,27 @@ export const DoctorsList = () => {
     };
 
     return (
-        <DataTable
-            className="table table-bordered table-hover"
+        <>
+            <div className="mb-3 d-flex justify-content-between align-items-center">
+                <SearchBar
+                    value={searchText}
+                    onChange={setSearchText}
+                    placeholder="Buscar doctor..."
+                />
+            </div>
+            <DataTable
+                className="table table-bordered table-hover"
+                customStyles={customStyles}
+                columns={columns}
+                data={filteredDoctors}
+                pagination
+                paginationPerPage={5}
+                paginationRowsPerPageOptions={[5, 10, 15, 20]}
+                highlightOnHover
+                striped
+                noDataComponent="No se encontraron doctores con ese criterio"
+            />
+        </>
 
-            customStyles={customStyles}
-            columns={columns}
-            data={doctors}
-            pagination
-            paginationPerPage={5}
-            paginationRowsPerPageOptions={[5, 10, 15, 20]}
-            highlightOnHover
-            striped
-        />
     )
 }

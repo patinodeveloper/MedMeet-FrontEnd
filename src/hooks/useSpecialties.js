@@ -1,7 +1,7 @@
 import { useState, useReducer } from 'react';
-import { specialtiesReducer } from '../reducers/specialtiesReducers';
+import { specialtyReducer } from '../reducers/specialtyReducer';
 import Swal from "sweetalert2";
-import { findAllSpecialties, removeSpecialty, saveSpecialty, updateSpecialty } from '../api/services/specialtiesServices';
+import { findAllSpecialties, removeSpecialty, saveSpecialty, updateSpecialty } from '../api/services/specialtyServices';
 import { getDoctorsBySpecialty } from '../api/services/doctorServices'
 
 const initialSpecialties = [];
@@ -9,12 +9,13 @@ const initialSpecialtyForm = {id: 0, name: ''};
 const initialErrors = { name: '' };
 
 export const useSpecialties = () => {
-    const [specialties, dispatch] = useReducer(specialtiesReducer, initialSpecialties);
+    const [specialties, dispatch] = useReducer(specialtyReducer, initialSpecialties);
     const [specialtySelected, setSpecialtySelected] = useState(initialSpecialtyForm);
     const [visibleForm, setVisibleForm] = useState(false);
     const [errors, setErrors] = useState(initialErrors);
     
     const [isLoading, setIsLoading] = useState(false); 
+    const [searchText, setSearchText] = useState("");
 
     const getSpecialties = async () => {
         setIsLoading(true);
@@ -60,6 +61,7 @@ export const useSpecialties = () => {
                 "success"
             );
             handlerCloseForm();
+            setSearchText("");
         } catch (error) {
             if (error.response?.status === 400) {
                 setErrors(error.response.data);
@@ -103,6 +105,7 @@ export const useSpecialties = () => {
                             text: "La especialidad se ha eliminado exitosamente",
                             icon: "success"
                         });
+                        setSearchText("");
                     }
                 });
             }
@@ -133,6 +136,9 @@ export const useSpecialties = () => {
         setErrors({});
     };
 
+    const filteredSpecialties = specialties.filter(specialty =>
+        specialty.name.toLowerCase().includes(searchText.toLowerCase()) 
+    );
 
     return {
         specialties,
@@ -141,6 +147,9 @@ export const useSpecialties = () => {
         visibleForm,
         errors,
         isLoading,
+        searchText,
+        setSearchText,
+        filteredSpecialties,
 
         handlerAddSpecialty,
         handlerRemoveSpecialty,

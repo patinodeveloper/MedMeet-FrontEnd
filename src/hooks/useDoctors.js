@@ -21,10 +21,9 @@ export const useDoctors = () => {
     const [doctorSelected, setDoctorSelected] = useState(initialDoctorForm);
     const [visibleForm, setVisibleForm] = useState(false);
     const [errors, setErrors] = useState(initialErrors);
-
     const [isLoading, setIsLoading] = useState(false); 
-
     const { specialties, error: specialtiesError } = useSpecialties();
+    const [searchText, setSearchText] = useState("");
 
     const getDoctors = async () => {
         setIsLoading(true);
@@ -71,6 +70,7 @@ export const useDoctors = () => {
                 "success"
             );
             handlerCloseForm();
+            setSearchText("");
         } catch (error) {
             if (error.response?.status === 400) {
                 setErrors(error.response.data);
@@ -105,6 +105,7 @@ export const useDoctors = () => {
                     text: "El Doctor se ha eliminado exitosamente",
                     icon: "success"
                 });
+                setSearchText("");
             }
         });
     };
@@ -131,6 +132,12 @@ export const useDoctors = () => {
         setErrors({});
     };
 
+    const filteredDoctors = doctors.filter(doctor =>
+        `${doctor.firstName} ${doctor.lastName}`.toLowerCase().includes(searchText.toLowerCase()) ||
+        doctor.email.toLowerCase().includes(searchText.toLowerCase()) ||
+        (doctor.specialty?.name || "Sin Especialidad").toLowerCase().includes(searchText.toLowerCase())
+    );
+
     return {
         doctors,
         doctorSelected,
@@ -140,6 +147,9 @@ export const useDoctors = () => {
         isLoading,
         specialties,
         specialtiesError,
+        filteredDoctors,
+        searchText,
+        setSearchText,
 
         handlerAddDoctor,
         handlerRemoveDoctor,

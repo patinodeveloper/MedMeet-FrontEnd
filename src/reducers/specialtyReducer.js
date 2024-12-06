@@ -1,4 +1,4 @@
-export const specialtiesReducer = (state = [], action) => {
+export const specialtyReducer = (state = [], action) => {
   
     switch (action.type) {
         case "loadSpecialties":
