@@ -1,10 +1,9 @@
 import { useContext } from "react";
-import { DoctorForm } from "./DoctorForm";
-import { DoctorContext } from "../context/DoctorContext";
+import { ScheduleForm } from "./ScheduleForm";
+import { ScheduleContext } from "../context/ScheduleContext";
 
-export const DoctorModal = () => {
-
-    const { doctorSelected, handlerCloseForm } = useContext(DoctorContext);
+export const ScheduleModal = () => {
+    const { scheduleSelected, handlerCloseForm } = useContext(ScheduleContext);
 
     return (
         <div className="open-modal animation fadeIn">
@@ -13,14 +12,15 @@ export const DoctorModal = () => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title">
-                                {doctorSelected.id > 0 ? "Editar Doctor" : "Agregar Doctor"}
+                                {scheduleSelected.id > 0 ? "Editar Horario" : "Agregar Horario"}
                             </h5>
                             <button type="button" className="btn-close" onClick={handlerCloseForm}></button>
                         </div>
                         <div className="modal-body">
-                            <DoctorForm
-                                doctorSelected={doctorSelected}
-                                handlerCloseForm={handlerCloseForm} />
+                            <ScheduleForm
+                                scheduleSelected={scheduleSelected}
+                                handlerCloseForm={handlerCloseForm}
+                            />
                         </div>
                     </div>
                 </div>

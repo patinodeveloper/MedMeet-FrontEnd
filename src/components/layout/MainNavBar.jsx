@@ -27,6 +27,9 @@ export const MainNavBar = () => {
                             <li className="nav-item">
                                 <Link className="nav-link text-black" to="/specialties">Especialidades</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link text-black" to="/schedules">Horarios</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>

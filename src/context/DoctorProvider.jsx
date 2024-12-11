@@ -19,7 +19,8 @@ export const DoctorProvider = ({ children }) => {
         handlerDoctorSelectedForm,
         handlerOpenForm,
         handlerCloseForm,
-        getDoctors
+        getDoctors,
+        getDoctorsBySpecialty
     } = useDoctors();
 
     return (
@@ -40,7 +41,8 @@ export const DoctorProvider = ({ children }) => {
                 handlerDoctorSelectedForm,
                 handlerOpenForm,
                 handlerCloseForm,
-                getDoctors
+                getDoctors,
+                getDoctorsBySpecialty
             }
         }>
             {children}

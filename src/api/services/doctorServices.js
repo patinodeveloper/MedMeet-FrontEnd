@@ -38,7 +38,7 @@ export const removeDoctor = async (id) => {
     }
 };
 
-export const getDoctorsBySpecialty = async (specialtyId) => {
+export const findDoctorsBySpecialty = async (specialtyId) => {
     try {
         const response = await axios.get(`${URL}/specialty/${specialtyId}`);
         return response.data;

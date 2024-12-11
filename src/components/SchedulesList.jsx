@@ -1,17 +1,17 @@
 import { useContext, useEffect } from "react";
-import DataTable from "react-data-table-component"
-import { DoctorContext } from "../context/DoctorContext";
+import DataTable from "react-data-table-component";
+import { ScheduleContext } from "../context/ScheduleContext";
 import { ActionButtons } from "./ActionButtons";
 import { SearchBar } from "./SearchBar";
 
-export const DoctorsList = () => {
+export const SchedulesList = () => {
     const {
-        filteredDoctors,
+        filteredSchedules,
         searchText,
         setSearchText,
-        handlerDoctorSelectedForm,
-        handlerRemoveDoctor
-    } = useContext(DoctorContext);
+        handlerScheduleSelectedForm,
+        handlerRemoveSchedule
+    } = useContext(ScheduleContext);
 
     useEffect(() => {
         setSearchText("");
@@ -19,22 +19,20 @@ export const DoctorsList = () => {
 
     const columns = [
         { name: "ID", selector: row => row.id, sortable: true, width: "80px" },
-        { name: "Nombre", selector: row => row.firstName, sortable: true },
-        { name: "Apellidos", selector: row => row.lastName, sortable: true },
-        { name: "Correo", selector: row => row.email, sortable: true, width: "280px" },
-        { name: "Especialidad", selector: row => row.specialty ? row.specialty.name : 'Sin Especialidad', sortable: true, width: "160px" },
+        { name: "Doctor", selector: row => `${row.doctor.firstName} ${row.doctor.lastName}`, sortable: true },
+        { name: "Día", selector: row => row.day, sortable: true, width: "150px" },
+        { name: "Hora Inicio", selector: row => row.startTime, sortable: true, width: "150px" },
+        { name: "Hora Fin", selector: row => row.endTime, sortable: true, width: "150px" },
         {
             name: "Acciones",
-            cell: doctor => (
-                <div className="d-flex justify-content-between gap-2">
-                    <ActionButtons
-                        item={doctor}
-                        handlerEdit={handlerDoctorSelectedForm}
-                        handlerRemove={handlerRemoveDoctor}
-                    />
-                </div>
+            cell: schedule => (
+                <ActionButtons
+                    item={schedule}
+                    handlerEdit={handlerScheduleSelectedForm}
+                    handlerRemove={handlerRemoveSchedule}
+                />
             ),
-            width: "140px"
+            width: "170px"
         }
     ];
 
@@ -61,21 +59,21 @@ export const DoctorsList = () => {
                 <SearchBar
                     value={searchText}
                     onChange={setSearchText}
-                    placeholder="Buscar doctor..."
+                    placeholder="Buscar horario..."
                 />
             </div>
             <DataTable
                 className="table table-bordered table-hover"
                 customStyles={customStyles}
                 columns={columns}
-                data={filteredDoctors}
+                data={filteredSchedules}
                 pagination
                 paginationPerPage={5}
                 paginationRowsPerPageOptions={[5, 10, 15, 20]}
                 highlightOnHover
                 striped
-                noDataComponent="No se encontraron doctores con ese criterio"
+                noDataComponent="No se encontraron horarios con ese criterio"
             />
         </>
-    )
-}
+    );
+};

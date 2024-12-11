@@ -1,7 +1,7 @@
 import { useReducer, useState } from "react";
 import { doctorReducer } from "../reducers/doctorReducer";
 import Swal from "sweetalert2";
-import { findAllDoctors, saveDoctor, updateDoctor, removeDoctor } from "../api/services/doctorServices";
+import { findAllDoctors, saveDoctor, updateDoctor, removeDoctor, findDoctorsBySpecialty } from "../api/services/doctorServices";
 import { useSpecialties } from "./useSpecialties";
 
 const initialDoctors = [];
@@ -40,12 +40,26 @@ export const useDoctors = () => {
         }
     };
 
+    const getDoctorsBySpecialty = async (specialtyId) => {
+        try {
+            const result = await findDoctorsBySpecialty(specialtyId);
+            dispatch({
+                type: "loadDoctors",
+                payload: result
+            });
+        } catch (error) {
+            console.error("Error al obtener doctores por especialidad:", error);
+        }
+    };
+
     const handlerAddDoctor = async (doctor) => {
         console.log(doctor);
+        console.log(doctor.id);
         const type = (doctor.id === 0) ? "addDoctor" : "updateDoctor";
         let response;
         try {
             if (doctor.id === 0) {
+                console.log('save');
                 response = await saveDoctor({
                     ...doctor,
                     specialtyId: doctor.specialty.id
@@ -156,6 +170,7 @@ export const useDoctors = () => {
         handlerDoctorSelectedForm,
         handlerOpenForm,
         handlerCloseForm,
-        getDoctors
+        getDoctors,
+        getDoctorsBySpecialty
     };
 };

@@ -2,7 +2,7 @@ import { useState, useReducer } from 'react';
 import { specialtyReducer } from '../reducers/specialtyReducer';
 import Swal from "sweetalert2";
 import { findAllSpecialties, removeSpecialty, saveSpecialty, updateSpecialty } from '../api/services/specialtyServices';
-import { getDoctorsBySpecialty } from '../api/services/doctorServices'
+import { findDoctorsBySpecialty } from '../api/services/doctorServices'
 
 const initialSpecialties = [];
 const initialSpecialtyForm = {id: 0, name: ''};
@@ -27,7 +27,7 @@ export const useSpecialties = () => {
                 payload: sortedSpecialties});
             setErrors({});
         } catch (error) {
-            console.error("Error fetching Specialties", error);
+            console.error("Error al cargar las especialidades", error);
         } finally {
             setIsLoading(false);
         }
@@ -57,7 +57,7 @@ export const useSpecialties = () => {
                 (specialty.id === 0) ? "Especialidad Registrada" : "Especialidad Actualizada",
                 (specialty.id === 0)
                     ? "La especialidad ha sido agregada con éxito"
-                    : "El especialidad ha sido actualizada con éxito",
+                    : "La especialidad ha sido actualizada con éxito",
                 "success"
             );
             handlerCloseForm();
@@ -74,7 +74,7 @@ export const useSpecialties = () => {
 
     const handlerRemoveSpecialty = async (id) => {
         try {
-            const doctors = await getDoctorsBySpecialty(id);
+            const doctors = await findDoctorsBySpecialty(id);
 
             if (doctors.length > 0) {
                 Swal.fire({
