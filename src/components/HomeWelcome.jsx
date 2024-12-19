@@ -14,8 +14,8 @@ export const HomeWelcome = () => {
             <p style={{ color: "var(--primary)" }}>
                 Navega por las secciones de doctores, pacientes y citas desde el menú para comenzar.
             </p>
-            <Link to="/doctors" className="btn btn-info btn-lg text-white fw-bold mt-3">
-                Gestionar Doctores
+            <Link to="/appointments" className="btn btn-info btn-lg text-white fw-bold mt-3">
+                Gestionar Citas
             </Link>
         </>
     )

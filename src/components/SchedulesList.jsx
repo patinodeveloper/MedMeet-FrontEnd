@@ -19,9 +19,14 @@ export const SchedulesList = () => {
 
     const columns = [
         { name: "ID", selector: row => row.id, sortable: true, width: "80px" },
-        { name: "Doctor", selector: row => `${row.doctor.firstName} ${row.doctor.lastName}`, sortable: true },
-        { name: "Día", selector: row => row.day, sortable: true, width: "150px" },
-        { name: "Hora Inicio", selector: row => row.startTime, sortable: true, width: "150px" },
+        {
+            name: "Doctor",
+            selector: row => `${row.doctor.firstName} ${row.doctor.lastName}`,
+            sortable: true,
+            width: "280px"
+        },
+        { name: "Día", selector: row => row.day, sortable: true },
+        { name: "Hora Inicio", selector: row => row.startTime, sortable: true },
         { name: "Hora Fin", selector: row => row.endTime, sortable: true, width: "150px" },
         {
             name: "Acciones",

@@ -4,20 +4,24 @@ import { MainNavBar } from "./components/layout/MainNavBar";
 import { AppRoutes } from "./routes/AppRoutes";
 
 export const MedMeetApp = () => {
-
     return (
         <>
             <BrowserRouter>
-                <header>
-                    <MainNavBar />
-                </header>
+                <div className="d-flex flex-column min-vh-100">
+                    <header>
+                        <MainNavBar />
+                    </header>
 
-                <div className="container">
-                    <AppRoutes />
+                    <main className="container-fluid flex-grow-1">
+                        <AppRoutes />
+                    </main>
+
+                    <footer className="text-center pb-3">
+                        <FooterView />
+                    </footer>
                 </div>
-
-                <FooterView />
             </BrowserRouter>
         </>
     );
-}
+};
+

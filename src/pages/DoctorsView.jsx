@@ -19,7 +19,7 @@ export const DoctorsView = () => {
     }, []);
 
     return (
-        <div className="container py-5">
+        <div className="container-fluid pb-4 px-3">
             {isLoading ? (
                 <div className="d-flex justify-content-center align-items-center vh-100">
                     <div className="text-center">
@@ -36,13 +36,11 @@ export const DoctorsView = () => {
                         <h3 className="fs-3 fw-bold text-primary d-flex align-items-center">
                             <i className="fas fa-user-md me-3"></i>Datos de Doctores
                         </h3>
-                        {!visibleForm && (
-                            <button
-                                className="btn btn-outline-success px-4 py-2 d-flex align-items-center"
-                                onClick={handlerOpenForm}>
-                                <i className="fas fa-plus me-2"></i>Nuevo Doctor
-                            </button>
-                        )}
+                        <button
+                            className="btn btn-outline-success px-4 py-2 d-flex align-items-center"
+                            onClick={handlerOpenForm}>
+                            <i className="fas fa-plus me-2"></i>Nuevo Doctor
+                        </button>
                     </div>
                     <div className="card shadow-lg border-0 rounded">
                         <div className="card-header bg-primary text-white">

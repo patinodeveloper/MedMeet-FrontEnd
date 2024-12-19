@@ -1,41 +1,52 @@
 import { useContext, useEffect } from "react";
-import DataTable from "react-data-table-component"
-import { DoctorContext } from "../context/DoctorContext";
+import DataTable from "react-data-table-component";
+import { AppointmentContext } from "../context/AppointmentContext";
 import { ActionButtons } from "./ActionButtons";
 import { SearchBar } from "./SearchBar";
 
-export const DoctorsList = () => {
+export const AppointmentsList = () => {
     const {
-        filteredDoctors,
+        filteredAppointments,
         searchText,
         setSearchText,
-        handlerDoctorSelectedForm,
-        handlerRemoveDoctor
-    } = useContext(DoctorContext);
+        handlerRemoveAppointment,
+        handlerAppointmentSelectedForm
+    } = useContext(AppointmentContext);
 
     useEffect(() => {
         setSearchText("");
     }, [setSearchText]);
 
     const columns = [
-        { name: "ID", selector: row => row.id, sortable: true, width: "80px" },
-        { name: "Nombre", selector: row => row.firstName, sortable: true },
-        { name: "Apellidos", selector: row => row.lastName, sortable: true },
-        { name: "Correo", selector: row => row.email, sortable: true },
+        { name: "ID", selector: row => row.id, sortable: true, width: "70px" },
         {
-            name: "Especialidad",
-            selector: row => row.specialty ? row.specialty.name : 'Sin Especialidad',
-            sortable: true,
-            width: "160px"
+            name: "Paciente",
+            selector: row => `${row.patient.firstName} ${row.patient.lastName}`,
+            sortable: true
         },
         {
+            name: "Doctor",
+            selector: row => `${row.doctor.firstName} ${row.doctor.lastName}`,
+            sortable: true
+        },
+        {
+            name: "Consultorio",
+            selector: row => row.doctor.specialty.name,
+            sortable: true,
+            width: "140px"
+        },
+        { name: "Fecha", selector: row => row.date, sortable: true, width: "140px" },
+        { name: "Hora Inicio", selector: row => row.startTime, sortable: true, width: "140px" },
+        { name: "Hora Fin", selector: row => row.endTime, sortable: true, width: "130px" },
+        { name: "Estatus", selector: row => row.status, sortable: true, width: "140px" },
+        {
             name: "Acciones",
-            cell: doctor => (
+            cell: appointment => (
                 <div className="d-flex justify-content-between gap-2">
                     <ActionButtons
-                        item={doctor}
-                        handlerEdit={handlerDoctorSelectedForm}
-                        handlerRemove={handlerRemoveDoctor}
+                        item={appointment}
+                        handlerEdit={handlerAppointmentSelectedForm}
+                        handlerRemove={handlerRemoveAppointment}
                     />
                 </div>
             ),
@@ -73,14 +84,14 @@ export const DoctorsList = () => {
                 className="table table-bordered table-hover"
                 customStyles={customStyles}
                 columns={columns}
-                data={filteredDoctors}
+                data={filteredAppointments}
                 pagination
                 paginationPerPage={5}
                 paginationRowsPerPageOptions={[5, 10, 15, 20]}
                 highlightOnHover
                 striped
-                noDataComponent="No se encontraron doctores con ese criterio"
+                noDataComponent="No se encontraron citas con ese criterio"
             />
         </>
-    )
-}
+    );
+};

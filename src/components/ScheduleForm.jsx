@@ -32,7 +32,6 @@ export const ScheduleForm = ({ scheduleSelected, handlerCloseForm }) => {
         }
     }, [scheduleForm.specialty]);
 
-
     const onInputChange = ({ target }) => {
         const { name, value } = target;
         setScheduleForm({

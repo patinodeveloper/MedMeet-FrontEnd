@@ -19,12 +19,12 @@ export const PatientsList = () => {
 
     const columns = [
         { name: "ID", selector: row => row.id, sortable: true, width: "80px" },
-        { name: "Nombre", selector: row => row.firstName, sortable: true },
-        { name: "Apellidos", selector: row => row.lastName, sortable: true },
+        { name: "Nombre", selector: row => row.firstName, sortable: true, width: "230px" },
+        { name: "Apellidos", selector: row => row.lastName, sortable: true, width: "230px" },
         { name: "Edad", selector: row => row.age, sortable: true, width: "100px" },
         { name: "Sexo", selector: row => row.sex, sortable: true, width: "140px" },
         { name: "Teléfono", selector: row => row.phoneNumber, sortable: true, width: "160px" },
-        { name: "Dirección", selector: row => row.address, sortable: true, width: "160px" },
+        { name: "Dirección", selector: row => row.address, sortable: true },
         {
             name: "Acciones",
             cell: patient =>

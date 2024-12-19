@@ -1,3 +1,5 @@
+// Sin utilidad general en el sistema
+
 export const ScheduleActionButtons = ({ doctor, handlerOpenForm, handlerViewSchedules }) => {
     return (
         <div className="d-flex gap-2">

@@ -9,7 +9,7 @@ export const PatientsView = () => {
         patients,
         visibleForm,
         isLoading,
-        
+
         handlerOpenForm,
         getPatients
     } = useContext(PatientContext);
@@ -19,7 +19,7 @@ export const PatientsView = () => {
     }, []);
 
     return (
-        <div className="container my-5">
+        <div className="container-fluid pb-4 px-3">
             {isLoading ? (
                 <div className="d-flex justify-content-center align-items-center vh-100">
                     <div className="text-center">
@@ -36,13 +36,11 @@ export const PatientsView = () => {
                         <h3 className="fs-3 fw-bold text-primary d-flex align-items-center">
                             <i className="fas fa-users me-3"></i>Datos de Pacientes
                         </h3>
-                        {!visibleForm && (
-                            <button
-                                className="btn btn-outline-success px-4 py-2 d-flex align-items-center"
-                                onClick={handlerOpenForm}>
-                                <i className="fas fa-plus me-2"></i>Nuevo Paciente
-                            </button>
-                        )}
+                        <button
+                            className="btn btn-outline-success px-4 py-2 d-flex align-items-center"
+                            onClick={handlerOpenForm}>
+                            <i className="fas fa-plus me-2"></i>Nuevo Paciente
+                        </button>
                     </div>
                     <div className="card shadow-lg border-0 rounded">
                         <div className="card-header bg-primary text-white">
