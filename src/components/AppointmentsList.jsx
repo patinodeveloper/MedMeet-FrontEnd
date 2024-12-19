@@ -90,7 +90,11 @@ export const AppointmentsList = () => {
                 paginationRowsPerPageOptions={[5, 10, 15, 20]}
                 highlightOnHover
                 striped
-                noDataComponent="No se encontraron citas con ese criterio"
+                noDataComponent={
+                    filteredAppointments.length === 0 ? 
+                    "No se encontraron citas." : 
+                    "Cargando datos..."
+                }
             />
         </>
     );

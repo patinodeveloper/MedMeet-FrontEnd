@@ -79,7 +79,11 @@ export const DoctorsList = () => {
                 paginationRowsPerPageOptions={[5, 10, 15, 20]}
                 highlightOnHover
                 striped
-                noDataComponent="No se encontraron doctores con ese criterio"
+                noDataComponent={
+                    filteredDoctors.length === 0 ? 
+                    "No se encontraron doctores." : 
+                    "Cargando datos..."
+                }
             />
         </>
     )

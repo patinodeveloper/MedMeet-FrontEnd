@@ -67,6 +67,11 @@ export const SpecialtiesList = () => {
                 paginationRowsPerPageOptions={[5, 10, 15, 20]}
                 highlightOnHover
                 striped
+                noDataComponent={
+                    filteredSpecialties.length === 0 ? 
+                    "No se encontraron especialidades." : 
+                    "Cargando datos..."
+                }
             />
         </>
     );

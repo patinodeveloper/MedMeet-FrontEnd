@@ -97,11 +97,15 @@ export const AppointmentForm = ({ appointmentSelected, handlerCloseForm }) => {
                     onChange={onInputChange}
                 >
                     <option value="">Seleccionar especialidad</option>
-                    {specialties.map(spec => (
-                        <option key={spec.id} value={spec.id}>
-                            {spec.name}
-                        </option>
-                    ))}
+                    {specialties.length > 0 ? (
+                        specialties.map(spec => (
+                            <option key={spec.id} value={spec.id}>
+                                {spec.name}
+                            </option>
+                        ))
+                    ) : (
+                        <option disabled>No hay especialidades disponibles</option>
+                    )}
                 </select>
                 <p className="text-danger">{errors?.specialty}</p>
             </div>

@@ -6,10 +6,11 @@ const URL = `${API_BASE_URL}/doctors`;
 export const findAllDoctors = async () => {
     try {
         const response = await axios.get(URL);
-        return response.data;
+        // Si la respuesta está vacía, puedes retornar un arreglo vacío.
+        return response.data.length > 0 ? response.data : [];
     } catch (error) {
         console.error(error);
-        throw error;
+        return { error: true, message: "No se pudo cargar los doctores" };
     }
 };
 
@@ -41,9 +42,9 @@ export const removeDoctor = async (id) => {
 export const findDoctorsBySpecialty = async (specialtyId) => {
     try {
         const response = await axios.get(`${URL}/specialty/${specialtyId}`);
-        return response.data;
+        return response.data.length > 0 ? response.data : [];
     } catch (error) {
-        console.error("Error al cargar los doctores", error);
-        throw error;
+        console.error("Error al cargar los doctores por especialidad", error);
+        return { error: true, message: "No se pudo cargar los doctores por especialidad" };
     }
 };

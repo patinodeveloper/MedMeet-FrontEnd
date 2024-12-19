@@ -77,7 +77,11 @@ export const SchedulesList = () => {
                 paginationRowsPerPageOptions={[5, 10, 15, 20]}
                 highlightOnHover
                 striped
-                noDataComponent="No se encontraron horarios con ese criterio"
+                noDataComponent={
+                    filteredSchedules.length === 0 ? 
+                    "No se encontraron doctores." : 
+                    "Cargando datos..."
+                }
             />
         </>
     );

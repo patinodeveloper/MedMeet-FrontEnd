@@ -6,27 +6,28 @@ const URL = `${API_BASE_URL}/appointments`;
 export const findAllAppointments = async () => {
     try {
         const response = await axios.get(URL);
-        return response.data;
+        // Si la respuesta está vacía, puedes retornar un arreglo vacío.
+        return response.data.length > 0 ? response.data : [];
     } catch (error) {
         console.error(error);
-        throw error;
+        return { error: true, message: "Error al cargar las citas" };
     }
 };
 
 export const findAppointmentsById = async (id) => {
     try {
         const response = await axios.get(`${URL}/${id}`);
-        return response.data;
+        return response.data.length > 0 ? response.data : [];
     } catch (error) {
         console.error(error);
-        throw error;
+        return { error: true, message: "Error al cargar las citas por ID" };
     }
 };
 
 export const findAppointmentsByDoctorAndDate = async (idDoctor, date) => {
     try {
         const response = await axios.get(`${URL}/doctor/${idDoctor}/date/${date}`)
-        return response.data;
+        return response.data.length > 0 ? response.data : [];
     } catch (error) {
         if (error.response) {
             console.error("Conflicto de horario:", error.response.data);

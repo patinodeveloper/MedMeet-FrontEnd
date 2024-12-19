@@ -73,6 +73,11 @@ export const PatientsList = () => {
                 paginationRowsPerPageOptions={[5, 10, 15, 20]}
                 highlightOnHover
                 striped
+                noDataComponent={
+                    filteredPatients.length === 0 ? 
+                    "No se encontraron pacientes." : 
+                    "Cargando datos..."
+                }
             />
         </>
     );

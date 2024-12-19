@@ -6,10 +6,10 @@ const URL = `${API_BASE_URL}/specialties`;
 export const findAllSpecialties = async () => {
     try {
         const response = await axios.get(URL);
-        return response.data;
+        return response.data.length > 0 ? response.data : [];
     } catch (error) {
-        console.error("Error fetching specialties", error);
-        throw error;
+        console.error(error);
+        return { error: true, message: "Error al cargar las especialidades" };
     }
 };
 

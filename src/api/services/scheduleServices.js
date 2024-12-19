@@ -6,33 +6,33 @@ const URL = `${API_BASE_URL}/schedules`;
 export const findAllSchedules = async () => {
     try {
         const response = await axios.get(URL);
-        return response.data;
+        return response.data.length > 0 ? response.data : [];
     } catch (error) {
         console.error(error);
-        throw error;
+        return { error: true, message: "Error al cargar los horarios" };
     }
 };
 
 export const findSchedulesByDoctorId = async (id) => {
     try {
         const response = await axios.get(`${URL}/doctor/${id}`);
-        return response.data;
+        return response.data.length > 0 ? response.data : [];
     } catch (error) {
         console.error(error);
-        throw error;
+        return { error: true, message: "Error al cargar los horarios por Doctor" };
     }
 };
 
 export const findSchedulesByDay = async (day) => {
     try {
         const response = await axios.get(`${URL}/day/${day}`);
-        return response.data;
+        return response.data.length > 0 ? response.data : [];
     } catch (error) {
         if (error.response) {
             console.error("Conflicto de horario:", error.response.data);
         }
-        console.error("Error al obtener los horarios por día:", error);
-        throw error;
+        console.error(error);
+        return { error: true, message: "Error al cargar los horarios por Dia" }
     }    
 };
 

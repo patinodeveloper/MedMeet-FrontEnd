@@ -6,10 +6,10 @@ const URL = `${API_BASE_URL}/patients`;
 export const findAllPatients = async () => {
     try {
         const response = await axios.get(URL);
-        return response.data;
+        return response.data.length > 0 ? response.data : [];
     } catch (error) {
         console.error(error);
-        throw error;
+        return { error: true, message: "Error al cargar los pacientes" };
     }
 };
 

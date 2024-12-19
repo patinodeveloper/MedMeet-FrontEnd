@@ -100,11 +100,15 @@ export const ScheduleForm = ({ scheduleSelected, handlerCloseForm }) => {
                         onChange={onInputChange}
                     >
                         <option value="">Seleccionar especialidad</option>
-                        {specialties.map(spec => (
-                            <option key={spec.id} value={spec.id}>
-                                {spec.name}
-                            </option>
-                        ))}
+                        {specialties.length > 0 ? (
+                            specialties.map(spec => (
+                                <option key={spec.id} value={spec.id}>
+                                    {spec.name}
+                                </option>
+                            ))
+                        ) : (
+                            <option disabled>No hay especialidades disponibles</option>
+                        )}
                     </select>
                     <p className="text-danger">{errors?.specialty}</p>
                 </div>
@@ -119,11 +123,15 @@ export const ScheduleForm = ({ scheduleSelected, handlerCloseForm }) => {
                     disabled={id > 0}
                 >
                     <option value="">Seleccionar doctor</option>
-                    {doctors.map(doc => (
-                        <option key={doc.id} value={doc.id}>
-                            {`${doc.firstName} ${doc.lastName}`}
-                        </option>
-                    ))}
+                    {doctors.length > 0 ? (
+                        doctors.map((d) => (
+                            <option key={d.id} value={d.id}>
+                                {d.firstName} {d.lastName}
+                            </option>
+                        ))
+                    ) : (
+                        <option disabled>No hay doctores disponibles</option>
+                    )}
                 </select>
                 <p className="text-danger">{errors?.doctor}</p>
             </div>
